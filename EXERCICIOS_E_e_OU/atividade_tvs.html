@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <select name="" id="sel_tv">
+        <option selected disabled value="">- ESCOLHA UMA MARCA - </option>
+        <option value="s">Samsung</option>
+        <option value="l">LG</option>
+        <option value="m">Mondial</option>
+        <option value="b">Britânia</option>
+    </select>
+
+    <br><br>
+
+    <input type="text" id="in_preco" placeholder="Preço a pagar"><br><br>
+
+    <button onclick="analisar()">Analisar Compra</button> <br><br>
+
+    <div id="div_resultado">
+
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    function analisar(){
+        var tv = sel_tv.value
+        var preco = Number(in_preco.value)
+        var frase = "fora da faixa de preco" 
+
+        if(preco < 800 || preco > 2000){
+            if(preco < 800){
+                frase += '<br> Preço baixo demais!'
+            }else{
+                frase += '<br> TV cara demais, infelizmente'
+            }
+        }else{
+            if(tv == "m" || tv == "b"){
+                frase = "Na faixa de preço, porém marca não confiável"
+            }else{
+                frase = "Essa TV pode entrar na sua lista!"
+            }
+        }
+
+        div_resultado.innerHTML = frase
+    }
+
+</script>

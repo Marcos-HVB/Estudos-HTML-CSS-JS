@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    
+    Qual o intervalo de altura desejado para os próximos pilotos?<br><br>
+
+    Altura inícial: <br>
+    <input type="text" id="in_inicialPiloto"><br><br>
+
+    Altura final: <br>
+    <input type="text" id="in_finalPiloto"><br><br>
+
+    <br>
+
+    Qual o intervalo de altura desejado para os próximos jogadores de basquete?<br><br>
+
+    Altura inícial: <br>
+    <input type="text" id="in_inicialBasquete"><br><br>
+
+    Altura final: <br>
+    <input type="text" id="in_finalBasquete"><br><br>
+
+    <button onclick="selecionar()">Selecionar</button>
+
+</body>
+</html>
+
+<script>
+
+    var alturaInicialPiloto = 0
+    var alturaFinalPiloto = 0
+
+    var alturaInicialBasquete = 0
+    var alturaFinalBasquete = 0
+
+
+    function selecionar(){  
+      
+        alturaInicialPiloto = Number(in_inicialPiloto.value)
+        alturaFinalPiloto = Number(in_finalPiloto.value)
+
+        alturaInicialBasquete = Number(in_inicialBasquete.value)
+        alturaFinalBasquete = Number(in_finalBasquete.value)
+        
+        if(alturaInicialPiloto >= 1 && alturaFinalPiloto > alturaInicialPiloto && alturaInicialBasquete > 1.5 && alturaFinalBasquete > alturaInicialBasquete ){
+            
+            body.innerHTML = 
+                            `
+                                <h2><b>Processo de Seleção de novos atletas</b> </h2>
+                                <b>Critério de Seleção de piloto </b> – altura entre ${alturaInicialPiloto} até ${alturaFinalPiloto}<br>
+                                <b>Critério de Seleção de jogador de basquete</b> – altura entre ${alturaInicialBasquete} até ${alturaFinalBasquete}
+
+                                <br><br><br>
+                                Insira o nome do candidato: <br>
+                                <input type="text" id="in_nome"><br><br>
+
+                                Insira a altura do candidato: <br>
+                                <input type="text" id="in_altura"><br><br>
+
+                                <select id="sel_categoria" onchange="cadastrar()">
+                                    <option value=" " disabled selected> - Escolha uma categoria - </option>
+                                    <option value="basquete">Jogador de Basquete </option> 
+                                    <option value="piloto"> Piloto</option> 
+                                </select>
+
+                                <div id="div_resultado"> </div>
+
+                             `
+        }    
+    }
+
+    function cadastrar(){
+        var alturaCandidato = Number(in_altura.value)
+        var nomeCandidato = in_nome.value
+        var categoria = sel_categoria.value
+
+        if(categoria == 'piloto'){
+            if(alturaCandidato >= alturaInicialPiloto && alturaCandidato <= alturaFinalPiloto){
+                div_resultado.innerHTML += `<br>O candidato ${nomeCandidato} com altura de ${alturaCandidato} participará do processo de seleção de piloto` 
+            }else{
+                div_resultado.innerHTML += `<br>Infelizmente o candidato ${nomeCandidato} com altura de ${alturaCandidato} não atende os requisitos` 
+            }
+
+        }else if(categoria == 'basquete'){
+            if(alturaCandidato >= alturaInicialBasquete && alturaCandidato <= alturaFinalBasquete){
+                div_resultado.innerHTML += `<br>O candidato ${nomeCandidato} com altura de ${alturaCandidato} participará do processo de seleção de basquete` 
+            }else{
+                div_resultado.innerHTML += `<br>Infelizmente o candidato ${nomeCandidato} com altura de ${alturaCandidato} não atende os requisitos` 
+            }
+        }
+    }
+
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    Primeiro treinador <br>
+    <select name="" id="sel_tipoPrimeiro">
+        <option value="">- POKEMON INICIAL - </option>
+        <option value="planta">Planta</option>
+        <option value="fogo">Fogo</option>
+        <option value="agua">Água</option>
+    </select>
+
+    <br><br>
+
+    Segundo treinador <br>
+    <select name="" id="sel_tipoSegundo">
+        <option value="">- POKEMON INICIAL - </option>
+        <option value="planta">Planta</option>
+        <option value="fogo">Fogo</option>
+        <option value="agua">Água</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="batalhar()">Batalhar!</button>
+
+    <br><br>
+
+    <div id="div_resultado">
+
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    var vitorias = 0
+    var derrotas = 0
+    var empates = 0
+
+    function batalhar(){
+        var tipoPrimeiro = sel_tipoPrimeiro.value
+        var tipoSegundo = sel_tipoSegundo.value
+        var frase = "O iniciante venceu!"
+
+        if(tipoPrimeiro == tipoSegundo){
+            frase = "A batalha empatou"
+            empates +=1
+        }else if(
+                tipoPrimeiro == "planta" && tipoSegundo == "agua" 
+            || tipoPrimeiro == "agua" && tipoSegundo == "fogo" 
+            || tipoPrimeiro == "fogo" && tipoSegundo == "planta"
+        ){
+            vitorias += 1
+        }else {
+            frase = "O iniciante perdeu!"
+            derrotas +=1
+        }
+
+        div_resultado.innerHTML = `Iniciante = ${tipoPrimeiro}  <br>
+                                    Oponente = ${tipoSegundo} <br>
+                                    Mensagem = ${frase} <br>
+                                    Contagem = “Vitórias do Iniciante: ${vitorias} / Derrotas do Iniciante: ${derrotas} / Empates: ${empates} 
+                                    ` 
+    }
+
+</script>

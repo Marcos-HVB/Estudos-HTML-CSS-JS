@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    Qual o intervalo de altura desejado?<br><br>
+
+    Altura inícial: <br>
+    <input type="text" id="in_inicial"><br><br>
+
+    Altura final: <br>
+    <input type="text" id="in_final"><br><br>
+
+    ------------------------------------------- <br><br>
+
+    Insira o nome do piloto: <br>
+    <input type="text" id="in_nome"><br><br>
+
+    Insira a altura do pilto: <br>
+    <input type="text" id="in_altura"><br><br>
+
+    <button onclick="cadastrar()">Cadastrar Piloto</button> <br><br><br>
+
+    <div id="div_resultado">
+
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    function cadastrar(){
+        
+        var alturaInicial = Number(in_inicial.value)
+        var alturaFinal = Number(in_final.value)
+        var alturaPiloto = Number(in_altura.value)
+        var nomePiloto = in_nome.value
+
+
+        if(alturaInicial > 1 && alturaFinal > alturaInicial){
+            if(alturaPiloto >= alturaInicial && alturaPiloto <= alturaFinal){
+                div_resultado.innerHTML += `<br>O candidato ${nomePiloto} com altura de ${alturaPiloto} participará do processo de seleção de piloto`
+            }else{
+                div_resultado.innerHTML += `<br>Infelizmente o candidato ${nomePiloto} com altura de ${alturaPiloto} não atende os requisitos`
+            }
+        }else{
+            alert('Intervalo de altura inválido!')
+
+        }
+    }
+
+</script>

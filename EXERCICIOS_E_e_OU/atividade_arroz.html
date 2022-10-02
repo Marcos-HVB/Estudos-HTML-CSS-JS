@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <select name="" id="sel_arroz">
+        <option selected disabled value=""> - ESCOLHA UM TIPO - </option>
+        <option value="integral">Integral</option>
+        <option value="branco">Branco</option>
+    </select>
+    
+    <br><br>
+
+    <input type="text" id="in_tempo" placeholder="Tempo de cozimento"><br><br>
+
+    <input type="text" id="in_sal" placeholder="Quantidade de sal"><br><br>
+
+    <button onclick="avaliar()">Avaliar Arroz</button>
+
+    <div id="div_resultado">
+
+    </div>
+</body>
+</html>
+
+<script>
+
+    function avaliar(){
+        var tipo = sel_arroz.value
+        var tempo = Number(in_tempo.value)
+        var sal = Number(in_sal.value)
+        var img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHod5TRf-vrWtwYgjcyPlnXrRw0Rqo43ZGzY1tGnNMsa7ywWa8DwrhwALWR3ojWhhLvKs&usqp=CAU"
+        var frase = "Arroz perfeito"
+
+        if(tempo == 10 || tempo == 20){
+            if(tipo == 'branco' && tempo == 10 && sal <= 10 ){
+                
+            }else if(tipo == 'integral' && tempo == 20 && sal <= 15 ){
+                
+            }else{
+                frase = "Seu arroz não está perfeito"
+                img = "https://noticiasdatv.uol.com.br/media/_versions/artigos/band-pesadelo-na-cozinha-erick-jacquin-reproducao-4-2_fixed_large.jpg"
+            }
+            
+        }else{
+            frase = "Seu arroz não está perfeito"
+            img = "https://noticiasdatv.uol.com.br/media/_versions/artigos/band-pesadelo-na-cozinha-erick-jacquin-reproducao-4-2_fixed_large.jpg"
+        }
+
+        div_resultado.innerHTML = `${frase} <br> <img src="${img}" width="400px"/>`
+    }
+
+</script>

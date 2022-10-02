@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="in_nomeP" placeholder="Nome do produto"><br><br>
+
+    <input type="text" id="in_preco" placeholder="Preço Original"><br><br>
+
+    <input type="text" id="in_cupom" placeholder="Cupom de desconto"> <br><br>
+
+    <button onclick="avaliar()">Aplicar desconto</button>
+
+    <br><br>
+
+    <div id="div_resultado">
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function avaliar() {
+        var nome = in_nomeP.value.toLowerCase()
+
+        var preco = Number(in_preco.value)
+        var cupom = in_cupom.value
+        var frase = ""
+
+        if (nome == "") {
+            alert('Insira um produto para prosseguir')
+        } else if (preco == 0) {
+            alert('Insira um preço para prosseguir')
+        } else if (cupom == "") {
+            alert('Insira um cupom para prosseguir')
+        } else if (cupom == "GERAL_10" && nome == "tênis" || nome == "livros" || nome == "material escolar") {
+            preco *= 0.9
+            frase = `Cupom para produtos em geral aplicado! Preço final será de R$${preco.toFixed(2)} `
+        } else if (nome == "celular" || nome == "notebook" || nome == "tablet" && cupom == "TECH_19") {
+            preco *= 0.81
+            frase = `Cupom para produtos tecnológicos foi aplicado! Preço final será de R$${preco.toFixed(2)}`
+        } else {
+            frase = "Cupom não aplicado! Preencha os campos e tente novamente!"
+            
+        }
+
+        div_resultado.innerHTML = `${frase}`
+    }
+
+
+</script>

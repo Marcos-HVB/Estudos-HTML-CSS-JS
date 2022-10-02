@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2 id="texto"></h2>
+
+    <br><br>
+
+    <button onclick="clicks()">Clique cabalístico</button>
+
+</body>
+</html>
+
+<script>
+
+    var click = 0;
+    texto.innerHTML = `Você já clicou ${click} vezes`
+
+    function clicks(){
+        ++click
+
+        texto.innerHTML = `Você já clicou ${click} vezes`
+
+        if(click == 3 || click == 4 || click == 7 || click == 10){
+            alert(`Você clicou ${click} vezes e Juliana gosta desse número!`)
+        }
+    }
+
+</script>
