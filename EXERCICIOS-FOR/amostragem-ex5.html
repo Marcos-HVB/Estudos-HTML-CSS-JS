@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="in_superior" placeholder="Amostragem superior"><br><br>
+    <input type="text" id="in_inferior" placeholder="Amostragem inferior"><br><br>
+
+    <button onclick="contar()">Contar</button><br><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+</html>
+
+<script>
+
+    function contar(){
+        div_resultado.innerHTML = ''        
+        var superior = Number(in_superior.value)
+        var inferior = Number(in_inferior.value)
+
+        if(superior >= 100){
+            alert('Insira a amostragem superior menor que 100')
+        }else if(inferior <= 1){
+            alert('Insira a amostragem inferior maior que 1')
+        }else{
+            for(var contador = inferior; contador <= superior; contador++){
+                if(contador % 2 != 0){
+                    div_resultado.innerHTML += `${contador}  <br>`
+                }
+            }
+        }
+    }
+
+</script>

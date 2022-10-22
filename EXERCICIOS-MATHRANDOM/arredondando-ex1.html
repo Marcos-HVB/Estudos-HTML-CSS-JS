@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="sortear()">Sortear</button><br><br>
+
+    <div id="div_resultado"></div>
+
+    
+</body>
+</html>
+
+<script>
+
+    function sortear(){
+        var sorteado = Math.random();
+
+        div_resultado.innerHTML = sorteado
+
+        if(sorteado > 0.5){
+            div_resultado.innerHTML += '<br> Eu arredondaria para 1'
+        }else{
+            div_resultado.innerHTML += '<br>Eu arredondaria para 0'
+        }
+    }
+
+</script>

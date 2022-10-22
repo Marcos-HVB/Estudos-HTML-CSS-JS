@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="avaliar()">Avaliar</button>
+    <button onclick="calcular()">Equipe</button><br><br>
+
+    <div id="div_resultado"></div> <br><br>
+
+    <img src="" alt="" id="img"> <br><br>
+
+    <div id="div_resultado2"></div><br><br>
+
+    <img src="" alt="" id="img2">
+    
+</body>
+</html>
+
+<script>
+
+    var somaAvaliacoes = 0
+    var qtdAvaliacoes = 0
+
+    function avaliar(){
+        var nota = Number((Math.random() * 5).toFixed(1))
+        div_resultado.innerHTML = `Nota recebida ${nota}`
+        somaAvaliacoes += nota 
+        qtdAvaliacoes++
+
+        if(nota <= 0.5){
+            img.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Sad_Face_Emoji_Icon_60x60.png"
+        }else if(nota <= 1.5){
+            img.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Confused_Face_Emoji_60x60.png"
+        }else if(nota <= 3.5){
+            img.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Unamused_Face_Emoji_Icon_60x60.png"
+        }else if(nota <= 4.5 ){
+            img.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Smiling_Emoji_with_Eyes_Opened_Icon_60x60.png"
+        }else{
+            img.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Smiling_Emoji_with_Eyes_Opened_Icon_60x60.png"
+        }
+    }
+
+    function calcular(){
+        var media = somaAvaliacoes / qtdAvaliacoes
+
+        div_resultado2.innerHTML = `Média geral: ${media.toFixed(2)}`
+        if(media <= 0.5){
+            img2.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Sad_Face_Emoji_Icon_60x60.png"
+        }else if(media <= 1.5){
+            img2.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Confused_Face_Emoji_60x60.png"
+        }else if(media <= 3.5){
+            img2.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Unamused_Face_Emoji_Icon_60x60.png"
+        }else if(media <= 4.5 ){
+            img2.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Smiling_Emoji_with_Eyes_Opened_Icon_60x60.png"
+        }else{
+            img2.src = "https://cdn.shopify.com/s/files/1/1061/1924/files/Smiling_Emoji_with_Eyes_Opened_Icon_60x60.png"
+        }
+    }
+
+</script>

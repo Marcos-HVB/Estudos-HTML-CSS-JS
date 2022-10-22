@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="sortear()">Quero um cabalístico</button><br><br>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+
+    function sortear(){
+        var sorteado = parseInt(1 + Math.random() * 15)
+
+        if(sorteado == 3 || sorteado == 4 || sorteado == 7 || sorteado == 10 || sorteado == 12){
+            div_resultado.innerHTML = `${sorteado} - Eu S2 números cabalísticos!`
+        }else{
+            div_resultado.innerHTML = `${sorteado} - Ah, me dá um número bom na próxima!`
+
+        }
+    }
+
+</script>

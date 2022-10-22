@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="sortearDado()">Jogar dado</button><br><br>
+
+    <div id="div_resultado"></div>
+    <img src="" alt="" id="img" height="150px">
+
+    
+</body>
+</html>
+
+<script>
+
+    function sortearDado(){
+        var sorteado = parseInt(1 + Math.random() * 6);
+        div_resultado.innerHTML = sorteado
+
+        if(sorteado == 1){
+            img.src = 'https://img1.gratispng.com/20180219/yqw/kisspng-dice-game-kismet-four-sided-die-clip-art-dice-1-5a8b07402121c9.4645618215190608001357.jpg'
+        }else if(sorteado == 2){
+            img.src = 'https://img1.gratispng.com/20180315/uwe/kisspng-dice-clip-art-dice-face-5aaad1810d6028.7077402715211441930548.jpg'
+        }else if(sorteado == 3){
+            img.src = 'http://www.i2clipart.com/cliparts/a/9/e/5/clipart-dado-3-256x256-a9e5.png'
+        }else if(sorteado == 4){
+            img.src = 'https://img1.gratispng.com/20180315/kse/kisspng-dice-four-sided-die-game-clip-art-dice-faces-5aaad16f126d76.5950550615211441750755.jpg'
+        }else if(sorteado == 5){
+            img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtyOxKr_tqisbovmNzOuLwiRMVox4GMBRqZglphm_GNAaF9CZYLZtQ7OIn4MPaf5hYJXI&usqp=CAU'
+        }else{
+            img.src = 'https://img1.gratispng.com/20190701/fji/kisspng-dice-clip-art-scalable-vector-graphics-image-numbe-bestanddice-6a-b-svg-wikipedia-5d19ed23ef0530.256410331561980195979.jpg'
+
+        }
+    }
+
+</script>
