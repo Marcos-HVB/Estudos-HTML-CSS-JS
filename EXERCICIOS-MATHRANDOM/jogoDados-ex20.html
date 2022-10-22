@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="div_placar"></div><br>
+
+    <div id="div_resultado">
+        Jogador 1: 0 <br> 
+        Jogador 2: 0 <br>
+        Empate: 0<br>     
+    </div><br><br>
+    
+    <button onclick="sortearDado()">Jogar</button>
+
+    
+</body>
+</html>
+
+<script>
+
+    var vitoriaJogador1 = 0
+    var vitoriaJogador2 = 0
+    var empate = 0 
+
+    function sortearDado(){
+        var sorteado = parseInt(1 + Math.random() * 6);
+        var sorteado2 = parseInt(1 + Math.random() * 6);
+        
+
+        if(sorteado == sorteado2)
+            empate++
+        else if(sorteado > sorteado2)
+            vitoriaJogador1++    
+        else
+            vitoriaJogador2++
+
+        div_resultado.innerHTML = `Jogador 1: ${vitoriaJogador1} <br> 
+                                    Jogador 2: ${vitoriaJogador2} <br>
+                                    Empate: ${empate}<br>  
+                                    `
+
+        if(vitoriaJogador1 == vitoriaJogador2)
+            div_placar.innerHTML = "Jogo empatado"
+        else if(vitoriaJogador1 > vitoriaJogador2)
+            div_placar.innerHTML = "O jogador 1 está vencendo"
+        else
+            div_placar.innerHTML = "O jogador 2 está vencendo"
+
+
+    }
+
+    function sortearDado2(){
+        
+
+
+       
+    }
+</script>

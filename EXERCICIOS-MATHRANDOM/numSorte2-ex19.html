@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="in_nome" placeholder="Nome"> <br><br>
+
+    <input type="text" id="in_numSorte" placeholder="1° Número da sorte (1 a 10)"> <br><br>
+
+    <input type="text" id="in_numSorte2" placeholder="2° Número da sorte (1 a 10)"> <br><br>
+
+    <input type="text" id="in_numSorte3" placeholder="3° Número da sorte (1 a 10)"> <br><br>
+
+    <button onclick="sortear()">Sortear</button> <br><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    var tentativas = 0
+
+    function sortear() {
+        var nome = in_nome.value
+        var numSorte = Number(in_numSorte.value)
+        var numSorte2 = Number(in_numSorte2.value)
+        var numSorte3 = Number(in_numSorte3.value)
+        var numSorteado = 0
+        
+
+        if (numSorte < 1 || numSorte > 10 || numSorte2 < 1 || numSorte2 > 10 || numSorte3 < 1 || numSorte3 > 10) {
+            alert('Número inválido!')
+        } else {
+            tentativas++
+            var sorteado = 1 + parseInt(Math.random() * 10)
+
+            if (sorteado == numSorte) {
+                numSorteado = numSorte
+                div_resultado.innerHTML += `<br>Parabéns, ${nome} o seu número da sorte ${numSorteado} foi sorteado após ${tentativas} sorteios!`
+            } else if (sorteado == numSorte2) {
+                numSorteado = numSorte2
+                div_resultado.innerHTML += `<br>Parabéns, ${nome} o seu número da sorte ${numSorteado} foi sorteado após ${tentativas} sorteios!`
+            } else if (sorteado == numSorte3) {
+                numSorteado = numSorte3
+                div_resultado.innerHTML += `<br>Parabéns, ${nome} o seu número da sorte ${numSorteado} foi sorteado após ${tentativas} sorteios!`
+            } else{
+                div_resultado.innerHTML += ""
+            }
+        }
+
+    }
+
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="div_resultado"></div><br><br>
+
+    <button onclick="sortearNum()">Sortear número</button><br>
+
+    <div id="div_sorteado"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    var par = 0
+    var impar = 0
+    div_resultado.innerHTML = `Números pares: ${par} <br>
+                                Números ímpares: ${impar}
+                            `
+
+    function sortearNum() {
+        var sorteado = -30 + parseInt(Math.random() * (- 8 + 30))
+
+        if (sorteado % 2 == 0)
+            par++
+        else
+            impar++
+
+        div_sorteado.innerHTML = sorteado
+        div_resultado.innerHTML = `Números pares: ${par} <br>
+                                    Números ímpares: ${impar}
+                                    `
+
+    }
+
+
+
+</script>
