@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="in_numSorte" placeholder="Insira seu número da sorte"><br><br>
+
+    <button onclick="testar()">Testar minha sorte</button>
+
+
+
+    
+</body>
+</html>
+
+<script>
+
+    function testar(){
+        var numSorte = Number(in_numSorte.value)
+        var sorteado = 0
+        var contador
+
+        if(numSorte >= 0 && numSorte <= 100){
+            for(contador = 0; contador<20; contador++ ){
+                sorteado = parseInt(Math.random() * 101)
+    
+                if(sorteado == numSorte){
+                    alert(`Muito bem, você é uma pessoa de sorte! Seu número saiu no ${contador+1}º sorteio`)   
+                    break
+                }else if(contador == 19){
+                    alert('É, você não tem muita sorte em sorteios, pelo visto')
+                }
+            }    
+        }
+    }
+
+</script>

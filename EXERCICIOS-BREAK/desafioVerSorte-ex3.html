@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="calcular()">Ver minha sorte</button><br><br>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+
+    function calcular(){
+        div_resultado.innerHTML = ''
+        var carta = 0
+        var coracao = 0
+        var maisSorte = ''
+
+        for(var contador = 0; contador<20; contador++){
+            var sorteado = parseInt(1+ Math.random() * 2)
+            
+            if(sorteado == 1){
+                carta++
+                div_resultado.innerHTML += `<img src="https://img.freepik.com/vetores-gratis/carta-de-baralho-as-de-ouros-isolada_1308-88776.jpg?w=2000" height="100px">`
+            }else{
+                coracao++
+                div_resultado.innerHTML += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/220px-Heart_coraz%C3%B3n.svg.png" height="100px">`
+            }
+
+            if(coracao == 11 || carta == 11){
+                break   
+            }
+        }
+
+        if(carta > coracao){
+            maisSorte = 'jogo'
+        }else{
+            maisSorte = 'amor'
+            
+        }
+        div_resultado.innerHTML += `<br>Você tem mais sorte no ${maisSorte}`
+    }
+
+</script>
