@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Insira os filmes na ordem do que mais gosta: <br>
+    <input type="text" id="in_filme">  <br><br>
+
+    <button onclick="cadastrar()">Cadastrar filme</button> 
+    <button onclick="ver()">Ver favoritos</button> <br><br>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var filme = []
+
+    function cadastrar(){
+        filme.push(in_filme.value)
+        in_filme.value = ""
+    }
+
+    function ver(){
+        for (var index = 0; index < filme.length; index++) {
+            div_resultado.innerHTML += `${filme[index]} <br>`;
+        }
+
+        div_resultado.innerHTML += `<br>Total: ${filme.length} <br>
+                                    Filme preferido: ${filme[0]} <br>
+                                    Filme menos preferido: ${filme[filme.length-1]}
+                                    `
+    }
+
+</script>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Registre o número da linha de bus: <br>
+    <input type="text" id="in_linhaBus"><br><br>
+
+    <button onclick="gravar()">Gravar busão</button> <br><br>
+
+    <div id="div_linhasCadastradas"></div>
+
+    <br><br>
+    Pesquisar por uma linha já usada: <br>
+    <input type="text" id="in_linhaUsada"><br>
+    <button onclick="pesquisar()">Pesquisar</button> <br><br>
+
+    <div id="div_linhasPesquisa"></div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    var linhaBus = []
+    var linhaAtual = ''
+
+    function gravar() {
+        linhaAtual = (in_linhaBus.value).toLowerCase()
+        
+
+        if (linhaAtual != '') {
+
+            linhaBus.push(linhaAtual);
+            div_linhasCadastradas.innerHTML = ' '
+
+            for (var index = linhaBus.length; index > 0; index--) {
+                div_linhasCadastradas.innerHTML += `${linhaBus[index - 1]} <br>`
+            }
+        }
+    }
+
+    function pesquisar() {
+
+        var linhaUsada = (in_linhaUsada.value).toLowerCase()
+
+        if (linhaAtual != '') {
+
+
+
+            if (linhaBus.indexOf(linhaUsada) >= 0) {
+                var texto = ''
+                var vezesUsadas = []
+                var qtdVezesUsada = 0
+                for (var contador = 0; contador < linhaBus.length; contador++) {
+                    if (linhaBus[contador] == linhaUsada) {
+                        vezesUsadas[qtdVezesUsada] = contador + 1
+                        qtdVezesUsada++
+                    }
+                }
+
+                texto = `  Você já pegou essa linha ${vezesUsadas.length} vezes, nessa ordem: `
+
+                for (var index = 0; index < vezesUsadas.length; index++) {
+                    if(index == vezesUsadas.length-1)
+                        break
+
+                    texto += `${vezesUsadas[index]}, `
+                    
+                }
+
+                texto += `${vezesUsadas[vezesUsadas.length-1]}`
+
+            } else {
+                texto = "Você nunca pegou essa linha"
+            }
+            div_linhasPesquisa.innerHTML = texto
+        }
+    }
+</script>

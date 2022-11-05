@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="in_bairro" placeholder="Bairro onde morou"><br>
+
+    <button onclick="cadastrar()">Cadastrar bairro</button> <br><br>
+
+    <input type="text" id="in_localMorado" placeholder="Indique a posição do bairro"><br>
+    <button onclick="verificar()">Relembrar moradia</button>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+    var bairros = []
+
+    function cadastrar(){
+        bairros.push(in_bairro.value)
+    }
+
+    function verificar(){
+        var posicaoEscolhida = Number(in_localMorado.value)
+        var texto = `Você ainda não morou em ${posicaoEscolhida}`
+        if(bairros[posicaoEscolhida-1] != '' || bairros[posicaoEscolhida-1] != undefined ){
+            texto = bairros[posicaoEscolhida-1]
+        }
+
+        div_resultado.innerHTML = texto
+    }
+
+
+</script>

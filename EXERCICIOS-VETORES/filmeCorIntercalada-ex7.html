@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        Insira os filmes na ordem do que mais gosta: <br>
+        <input type="text" id="in_filme"> <br><br>
+
+        <button onclick="cadastrar()">Cadastrar filme</button>
+
+
+        <div id="div_resultado"></div>
+
+    </body>
+
+    </html>
+
+    <script>
+
+        var filme = []
+        var descisaoCor = false
+
+        function cadastrar() {
+
+            var filmeEscolhido = in_filme.value
+
+            if (filmeEscolhido != '') {
+                var cor = 'blue'
+
+                if (descisaoCor){
+                    console.log('entrou')
+                    cor = 'red'
+                    descisaoCor = false
+                }else{
+                    descisaoCor = true
+                }
+
+
+
+                filme.push(filmeEscolhido)
+                in_filme.value = ""
+
+                div_resultado.innerHTML += ` <span style="color: ${cor}"> ${filme[filme.length - 1]}</span><br>`
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

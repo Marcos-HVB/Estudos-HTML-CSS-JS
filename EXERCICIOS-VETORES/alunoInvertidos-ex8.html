@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Cadastre o nome de um aluno: <br>
+    <input type="text" id="in_aluno"> <br>
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <div id="div_nomes"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var nomes = []
+
+    function cadastrar(){
+        
+        var nomeAtual = in_aluno.value
+
+        if(nomeAtual != ''){
+            div_nomes.innerHTML = ''
+            nomes.push(nomeAtual)
+
+            for (var index = nomes.length; index > 0; index--) {
+                div_nomes.innerHTML += `${nomes[index-1]} <br>`
+                
+            }
+        }
+
+
+    }
+
+
+</script>

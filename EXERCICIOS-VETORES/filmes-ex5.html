@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        Insira os filmes na ordem do que mais gosta: <br>
+        <input type="text" id="in_filme"> <br><br>
+
+        <button onclick="cadastrar()">Cadastrar filme</button>
+
+
+        <div id="div_resultado"></div>
+
+    </body>
+
+    </html>
+
+    <script>
+
+        var filme = []
+
+        function cadastrar() {
+
+            var filmePreferido
+            var terceiroFilme
+            var filmeEscolhido = in_filme.value
+            
+            if (filmeEscolhido != '') {
+                in_filme.value = ""
+                filme.push(filmeEscolhido)
+
+                if (filme.length >= 1) {
+                    filmePreferido = filme[0]
+                    if (filme.length >= 3)
+                        terceiroFilme = filme[2]
+                    else
+                        terceiroFilme = 'Ainda não existe'
+                }
+
+                div_resultado.innerHTML = ` Seu filme favorito: ${filmePreferido}<br>
+
+                                    Seu 3º filme favorito: ${terceiroFilme}<br>
+
+                                    Total de filmes cadastrados: ${filme.length}`
+            }
+
+
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

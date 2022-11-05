@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="in_destino" placeholder="Destino de viagem"><br>
+    <button onclick="add()">Adicionar</button> <br><br>
+
+    <button onclick="primeiraViagem()">Primeira viagem</button><br>
+    <div id="div_primeiraViagem"></div><br><br>
+    <button onclick="terceiraViagem()">Terceira viagem</button><br>
+    <div id="div_terceiraViagem"></div><br><br>
+    <button onclick="ultimaViagem()">Última viagem</button><br>
+    <div id="div_ultimaViagem"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var lugares = []
+    var localEscolhido = ''
+    var texto = ''
+
+    function add(){
+        localEscolhido = in_destino.value
+        lugares.push(localEscolhido)
+    }
+
+    function primeiraViagem(){
+        if(lugares[0] == '' || lugares[0] == undefined){
+            texto = 'Ainda não viajou'
+        }else{
+            texto = lugares[0]
+        }
+        div_primeiraViagem.innerHTML = texto
+    }
+    function terceiraViagem(){
+        if(lugares[2] == '' || lugares[2] == undefined){
+            texto = 'Ainda não fez a 3° viagem'
+        }else{
+            texto = lugares[2]
+        }
+        div_terceiraViagem.innerHTML = texto
+    }
+    function ultimaViagem(){
+        if(lugares[lugares.length-1] == '' || lugares[lugares.length-1] == undefined){
+            texto = 'Ainda não viajou'
+        }else{
+            texto = lugares[lugares.length-1]
+        }
+        div_ultimaViagem.innerHTML = texto
+    }
+
+
+</script>
