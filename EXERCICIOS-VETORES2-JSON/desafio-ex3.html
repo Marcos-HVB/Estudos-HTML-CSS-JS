@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Indique o resultado: <br>
+
+    <select name="" id="sel_resultado">
+        <option value="" selected disabled>- ESCOLHA UM -</option>
+        <option value="V">Vitória</option>
+        <option value="E">Empate</option>
+        <option value="D">Derrota</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="registrar()">Registrar jogo</button> <br><br>
+
+    <div id="div_resultado">
+        O time teve: 0 vitórias, 0 empates, 0 derrotas <br>
+
+        Pontuação total: 0 pontos <br>
+  
+        Aproveitamento: 0%
+    </div>
+
+    <br><br>
+
+    Indique qual jogo quer saber o resultado: <br>
+    <input type="text" id="in_jogoEspecifico" onkeyup="buscarJogo()"> <br><br>
+
+    <div id="div_pesquisa"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var resultados = []
+
+    function registrar(){    
+        var resultadoAtual = sel_resultado.value
+        var v = 0
+        var e = 0
+        var d = 0
+
+        resultados.push(resultadoAtual)
+
+        for (let index = 0; index < resultados.length; index++) {
+            if(resultados[index] == 'V')
+                v++
+            else if(resultados[index] == 'E')
+                e++
+            else if(resultados[index] == 'D')
+                d++
+        }
+
+        var pontuacaoTotal = v*3+e
+
+        div_resultado.innerHTML = ` O time teve: ${v} vitórias, ${e} empates, ${d} derrotas <br>
+
+                                    Pontuação total: ${pontuacaoTotal} pontos <br>
+
+                                    Aproveitamento: ${(pontuacaoTotal / (resultados.length*3)) * 100}%
+
+                                    `
+    }
+
+    function buscarJogo(){
+        var pesquisa = Number(in_jogoEspecifico.value) - 1
+        var resultado
+        var msg
+
+        if(resultados[pesquisa] == 'V')
+            resultado = 'Ganhou'
+        else if(resultados[pesquisa] == 'E')
+            resultado = 'Empatou'
+        else if(resultados[pesquisa] == 'D')
+            resultado = 'Perdeu'
+        
+
+        if(resultados[pesquisa] == undefined){
+            msg = ` Não foi cadastrado um ${pesquisa+1}º jogo`
+        }else{
+            msg = `No ${pesquisa+1}º jogo, o time ${resultado}`
+        }
+
+        div_pesquisa.innerHTML = msg
+        
+    }
+
+</script>

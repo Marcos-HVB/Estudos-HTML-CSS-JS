@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="in_nome" placeholder="Nome do produto"> <br><br>
+    
+    <input type="text" id="in_preco" placeholder="Preço de compra"><br><br>
+
+    <button onclick="cadastrar()">Cadastrar</button> 
+    <button onclick="relatorio()">Relatório de estoque</button>
+    <br><br>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var nome = []
+    var preco = []
+
+    function cadastrar(){
+        var nomeAtual = in_nome.value
+        var precoAtual = Number(in_preco.value)
+
+        nome.push(nomeAtual)
+        preco.push(precoAtual)
+    }
+
+    function relatorio(){
+
+        var maisCaro = 0
+        var maisBarato = preco[0]
+        var somaPreco = 0
+        var vendaTotal =0
+        var vendaMedio = 0
+
+        if(nome.length>0){
+
+            div_resultado.innerHTML = `Total de produtos: ${nome.length}<br><br>`
+            for (let index = 0; index < nome.length; index++) {
+                div_resultado.innerHTML += `    
+                                        Produto ${index+1}: ${nome[index]}<br>
+                                        Preço de compra: R$${preco[index]}. Vender por R$${preco[index] * 1.25} <br><br>`
+
+                if(maisCaro < preco[index])
+                    maisCaro = preco[index]
+                                        
+                if(maisBarato > preco[index])
+                    maisBarato = preco[index]
+
+                somaPreco += preco[index]  
+                
+                vendaTotal += preco[index] * 1.25
+                
+            }
+
+            vendaMedio = vendaTotal / preco.length
+
+            div_resultado.innerHTML += ` <hr> <br>Produto mais caro: ${maisCaro} <br>
+                                                Produto mais barato: ${maisBarato}<br>
+                                                Soma do preço de todos os produtos: ${somaPreco}<br>
+                                                Média do preço de vendas: ${vendaMedio}
+            `
+        }
+    }
+
+</script>

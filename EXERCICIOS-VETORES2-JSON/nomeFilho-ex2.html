@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Insira o nome de seu filho: <br>
+    <input type="text" id="in_nome"> <br><br>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar família</button> <br><br>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var nomeFilhos = []
+
+    function cadastrar(){
+        var nomeAtual = in_nome.value
+        var msg = ''
+
+        if(nomeFilhos.length > 0){
+            var nomeIgual = false
+            
+            for (let index = 0; index < nomeFilhos.length; index++) {
+                if(nomeAtual == nomeFilhos[index]){
+                    nomeIgual = true
+                    msg = "Não pode mais de 1 filho com o mesmo nome!"
+                    break
+                }
+            }
+
+            if(nomeIgual)
+                alert(msg)
+            else
+                nomeFilhos.push(nomeAtual)
+
+
+        }else{
+            
+            nomeFilhos.push(nomeAtual)
+        }
+    }
+
+    function atualizar(){
+        var escolaPublica = 0
+        var escolaPrivada = 0
+
+        if(nomeFilhos.length>0){
+            for (let index = 0; index < nomeFilhos.length; index++) {
+                escolaPrivada += 3000
+                escolaPublica += 1500
+            }
+
+            div_resultado.innerHTML = `Você tem ${nomeFilhos.length} filhos <br>
+
+                                        Seu custo mensal será aproximadamente R$${escolaPrivada.toFixed(2)} se colocar eles em escola particular ou R$${escolaPublica.toFixed(2)} se eles estudarem em escola pública`
+        }
+    }
+
+
+</script>

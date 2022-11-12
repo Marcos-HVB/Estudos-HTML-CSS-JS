@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1, span{
+        color:#bf504d;
+    }
+
+    input{
+        border: 1px solid #bf504d;
+    }
+
+
+    button{
+        color: #994906;
+        background-color: transparent;
+        border: 1px solid #ed7d31;
+        font-size: 1em;
+        margin-right: 3%;
+        padding: 0.3% 1%;
+    }
+
+    .limites, .limites::placeholder{
+        color: #bf9100;
+        
+    }
+
+</style>
+<body id="body">
+
+    <h1>Análise de performance de Alunos - Registro</h1> <br>
+
+    <span>Entre com o Nome do aluno:</span> 
+    <input type="text" id="in_nome"> <br><br>
+
+    <span> Entre com a Nota do aluno 1° avaliação: </span> 
+    <input type="text" id="in_nota"> <br><br>
+
+    <span> Entre com a Nota do aluno 2° avaliação: </span> 
+    <input type="text" id="in_nota2"> <br><br>
+
+    <span> Entre com a Nota do aluno 3° avaliação: </span> 
+    <input type="text" id="in_nota3"> <br><br>
+
+    <button onclick="registrar()">Registrar</button>
+    <button onclick="analisar()">Analisar</button>
+    <br><br>
+
+    <div id="div_resultado"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var notas = []
+    var nomes = []
+    
+    
+
+    function registrar(){
+        var nome = in_nome.value
+        var nota1 = Number(in_nota.value)
+        var nota2 = Number(in_nota2.value)
+        var nota3 = Number(in_nota3.value)
+        div_resultado.innerHTML = ''
+
+        if(nome != '' && (nota1 >=0 && nota1 <= 10) && (nota2 >=0 && nota2 <= 10) && (nota3 >=0 && nota3 <= 10)){
+
+            var nota = {
+                nota1,
+                nota2,
+                nota3,
+            }
+            
+            notas.push(nota)
+            nomes.push(nome)
+
+            for (let index = nomes.length; index > 0; index--) {
+                div_resultado.innerHTML += `Nome: ${nomes[index-1]} <br>
+                                            Nota da 1° avaliação: ${notas[index-1].nota1} <br>
+                                            Nota da 2° avaliação: ${notas[index-1].nota2} <br>
+                                            Nota da 3° avaliação: ${notas[index-1].nota3} <br><br>`
+            }
+        }else{
+            alert('Insira um nome válido e uma nota entre 0 e 10!')
+        }
+    }
+
+
+    function analisar(){
+        
+        if(nomes.length > 0){
+
+            body.innerHTML = `  <h1>Análise de performance de Alunos - Pesquisa</h1> <br>
+
+                                <span>Entre com o intervalo de notas:</span> 
+                                <input type="text" id="in_min" placeholder="De" class="limites"> 
+                                <input type="text" id="in_max" placeholder="Até" class="limites"> <br><br>
+                                
+                                <button onclick="pesquisar()">Pesquisar</button> <br><br>
+
+                                <input type="text" id="in_avaliacaoEspecifica" placeholder="N° avaliação" class="limites"> 
+                                <button onclick="pesquisarEspecifica()">Pesquisar por avaliação</button>
+                                <br><br>
+                                
+                                <div id="div_resultado"> </div>
+                                `
+        }
+    }
+
+
+    function pesquisar(){
+        var min = Number(in_min.value)
+        var max = Number(in_max.value)
+        var maiorNota = 0
+        var menorNota = notas[0].nota1
+        var somaNotas =0
+        var alunosListados = 0
+        var numAvaliacao = Number(in_avaliacaoEspecifica.value)
+        div_resultado.innerHTML = ''
+
+        if((min >= 0 && min <= 10) && (max >= 0 && min <= 10) && min <= max){
+            for (let index = 0; index < nomes.length; index++) {
+                if((notas[index].nota1 >= min && notas[index].nota1 <= max) || (notas[index].nota2 >= min && notas[index].nota2 <= max) || (notas[index].nota3 >= min && notas[index].nota3 <= max)){
+                    alunosListados++
+                    div_resultado.innerHTML += `O aluno ${nomes[index]} ficou: <br> Com a nota ${notas[index].nota1} na 1° avaliação <br>
+                                                Com a nota ${notas[index].nota2} na 2° avaliação<br>
+                                                Com a nota ${notas[index].nota3} na 3° avaliação<br><br>
+                                                `
+                }
+
+
+                // maior nota
+                if(maiorNota < notas[index].nota1)
+                    maiorNota = notas[index].nota1
+                
+                if(maiorNota < notas[index].nota2)
+                    maiorNota = notas[index].nota2
+                    
+                if(maiorNota < notas[index].nota3)
+                    maiorNota = notas[index].nota3
+                // finazalização da maior nota
+                      
+                // menor nota
+                if(menorNota > notas[index].nota1)
+                    menorNota = notas[index].nota1
+
+                if(menorNota > notas[index].nota2)
+                    menorNota = notas[index].nota2
+
+                if(menorNota > notas[index].nota3)
+                    menorNota = notas[index].nota3
+
+                // finazaliação menor nota
+
+                somaNotas += notas[index].nota1 + notas[index].nota2 + notas[index].nota3
+                
+            }
+
+            div_resultado.innerHTML += `<hr><br>Total de alunos registrados: ${nomes.length}<br>
+
+                                        Total de alunos listado: ${alunosListados} (com nota no intervalo informado)<br>
+
+                                        Maior Nota = ${maiorNota}<br>
+
+                                        Menor Nota = ${menorNota}<br>
+
+                                        Média da Nota = ${somaNotas / (notas.length *3)}`
+        }else{
+            alert('Insira um intervalo válido!')
+        }
+
+    }
+
+    function pesquisarEspecifica(){
+        div_resultado.innerHTML = ''
+        var avaliacaoEspecifica = Number(in_avaliacaoEspecifica.value)
+        var msg = 'nota' + avaliacaoEspecifica
+
+        for (let index = 0; index < notas.length; index++) {
+
+            if(avaliacaoEspecifica == 1)
+                notaAtual = notas[index].nota1
+            else if(avaliacaoEspecifica == 2)
+                notaAtual = notas[index].nota2
+            else if(avaliacaoEspecifica == 3)
+                notaAtual = notas[index].nota3
+            
+            div_resultado.innerHTML += `O aluno ${nomes[index]} ficou: <br> Com a nota ${notaAtual} na ${avaliacaoEspecifica}° avaliação <br><br>`
+            
+        }
+    }
+
+
+
+
+
+</script>
