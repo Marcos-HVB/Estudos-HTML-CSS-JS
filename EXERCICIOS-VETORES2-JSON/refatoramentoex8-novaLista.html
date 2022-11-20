@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1,
+    span {
+        color: #bf504d;
+    }
+
+    input {
+        border: 1px solid #bf504d;
+    }
+
+
+    button {
+        color: #994906;
+        background-color: transparent;
+        border: 1px solid #ed7d31;
+        font-size: 1em;
+        margin-right: 3%;
+        padding: 0.3% 1%;
+    }
+
+    .limites,
+    .limites::placeholder {
+        color: #bf9100;
+
+    }
+</style>
+
+<body id="body">
+
+    <h1>Análise de performance de Alunos - Registro</h1> <br>
+
+    <span>Entre com o Nome do aluno:</span>
+    <input type="text" id="in_nome"> <br><br>
+
+    <span> Entre com a Nota do aluno: </span>
+    <input type="text" id="in_nota"> <br><br>
+
+    <button onclick="registrar()">Registrar</button>
+    <button onclick="analisar()">Analisar</button>
+    <br><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    var min = 0
+    var max = 0
+
+
+    var registro = []
+
+    function registrar() {
+        var nome = in_nome.value
+        var nota = Number(in_nota.value)
+        div_resultado.innerHTML = ''
+
+        if (nome != '' && (nota >= 0 && nota <= 10)) {
+
+            informacoesAluno = {
+                nome,
+                nota,
+            }
+
+            registro.push(informacoesAluno)
+
+            for (let index = registro.length; index > 0; index--) {
+                div_resultado.innerHTML += `Nome: ${registro[index - 1].nome} <br>
+                                            Nota: ${registro[index - 1].nota} <br><br>`
+            }
+        } else {
+            alert('Insira um nome válido e uma nota entre 0 e 10!')
+        }
+    }
+
+
+    function analisar() {
+
+        if (registro.length > 0) {
+
+            body.innerHTML = `  <h1>Análise de performance de Alunos - Pesquisa</h1> <br>
+
+                                <span>Entre com o intervalo de notas:</span> 
+                                <input type="text" id="in_min" placeholder="De" class="limites"> 
+                                <input type="text" id="in_max" placeholder="Até" class="limites"> <br><br>
+
+                                <button onclick="pesquisar()">Registrar</button>
+
+                                <br><br>
+
+                                <select name="" id="sel_filtro">
+                                    <option value="" selected disabled>- ESCOLHA UM - </option>
+                                    <option value="menorq">Menor que</option>
+                                    <option value="maiorq">Maior que</option>
+                                    <option value="nome">Nome</option>
+                                </select> 
+
+                                <input id="in_filtro">
+                                    
+
+                                <button onclick="aplicarFiltro()">Aplicar filtros</button> <br><br>
+                                
+                                <div id="div_resultado"> </div>
+                                `
+        }
+    }
+
+
+    function pesquisar() {
+        var min = Number(in_min.value)
+        var max = Number(in_max.value)
+        var maiorNota = 0
+        var menorNota = registro[0].nota
+        var somaNotas = 0
+        var alunosListados = 0
+        div_resultado.innerHTML = ''
+
+        if ((min >= 0 && min <= 10) && (max >= 0 && min <= 10) && min <= max) {
+            for (let index = 0; index < registro.length; index++) {
+                if (registro[index].nota >= min && registro[index].nota <= max) {
+                    alunosListados++
+                    div_resultado.innerHTML += `O aluno ${registro[index].nome} ficou com a nota ${registro[index].nota} <br>`
+                }
+
+                if (maiorNota < registro[index].nota)
+                    maiorNota = registro[index].nota
+
+                if (menorNota > registro[index].nota)
+                    menorNota = registro[index].nota
+
+                somaNotas += registro[index].nota
+
+            }
+
+            div_resultado.innerHTML += `<br>Total de alunos registrados: ${registro.length}<br>
+
+                                        Total de alunos listado: ${alunosListados} (com nota no intervalo informado)<br>
+
+                                        Maior Nota = ${maiorNota}<br>
+
+                                        Menor Nota = ${menorNota}<br>
+
+                                        Média da Nota = ${somaNotas / registro.length}`
+        } else {
+            alert('Insira um intervalo válido!')
+        }
+
+    }
+
+
+    function aplicarFiltro() {
+        var filtro = {
+            tipo: sel_filtro.value,
+            valor: in_filtro.value
+        }
+        var msg = ''
+        var alunosListados = 0
+        var maiorNota = 0
+        var menorNota = registro[0].nota
+        var somaNotas = 0
+
+        for (let index = 0; index < registro.length; index++) {
+
+
+
+            if (filtro.tipo == 'menorq') {
+                if (registro[index].nota <= filtro.valor) {
+                    msg += `O aluno ${registro[index].nome} ficou com a nota ${registro[index].nota} <br>`
+                    alunosListados++
+                }
+
+            } else if (filtro.tipo == 'maiorq') {
+                if (registro[index].nota >= filtro.valor) {
+                    msg += `O aluno ${registro[index].nome} ficou com a nota ${registro[index].nota} <br>`
+                    alunosListados++
+                }
+            } else {
+                if (registro[index].nome <= filtro.valor) {
+                    msg += `O aluno ${registro[index].nome} ficou com a nota ${registro[index].nota} <br>`
+                    alunosListados++
+                }
+
+            }
+
+
+            if (maiorNota < registro[index].nota)
+                maiorNota = registro[index].nota
+
+            if (menorNota > registro[index].nota)
+                menorNota = registro[index].nota
+
+            somaNotas += registro[index].nota
+        }
+        div_resultado.innerHTML = msg
+        div_resultado.innerHTML += `<br>Total de alunos registrados: ${registro.length}<br>
+
+                                        Total de alunos listado: ${alunosListados} (com nota no intervalo informado)<br>
+
+                                        Maior Nota = ${maiorNota}<br>
+
+                                        Menor Nota = ${menorNota}<br>
+
+                                        Média da Nota = ${somaNotas / registro.length}`
+
+    }
+
+
+
+</script>
