@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Código do produto:
+    <input type="text" id="in_codigo"> <br>
+
+    Nome do produto:
+    <input type="text" id="in_nome"> <br>
+
+    Quantidade em estoque:
+    <input type="text" id="in_estoque"> <br>
+
+    <button onclick="salvarProduto()">Salvar produto</button>
+    <button onclick="verEstoque()">Ver estoque</button>
+
+    <br><br>
+
+    <div class="div_relatorio" id="div_relatorio"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    var produtos = []
+
+    function salvarProduto() {
+        var codigoProduto = in_codigo.value
+        var nomeProduto = in_nome.value
+        var qtdEstoque = Number(in_estoque.value)
+
+        var msgAlert
+
+        var existeProduto = false
+
+        if (codigoProduto == '') {
+            msgAlert = 'Código inválido para o produto'
+        } else if (nomeProduto == '') {
+            msgAlert = 'Nome inválido para o produto'
+        } else if (qtdEstoque == '') {
+            msgAlert = 'Quantidade inválido para o produto'
+        } else {
+
+            for (let index = 0; index < produtos.length; index++) {
+
+                if (produtos[index].codigo == codigoProduto) {
+                    produtos[index].estoque += qtdEstoque
+                    existeProduto = true
+                    break
+                }
+
+            }
+
+            if (existeProduto){
+
+                msgAlert = `O produto de código ${codigoProduto} teve sua quantidade aumentada`
+            }else {
+                var produto = {
+                    codigo: codigoProduto,
+                    nome: nomeProduto,
+                    estoque: qtdEstoque
+                }
+                
+                produtos.push(produto)
+                msgAlert = 'Produto cadastrado com sucesso'
+            }
+        }
+
+        in_codigo.value = ''
+        in_estoque.value = ''
+        in_nome.value = ''
+        alert(msgAlert)
+    }
+
+    function verEstoque() {
+
+        div_relatorio.innerHTML = ''
+
+        for (let index = 0; index < produtos.length; index++) {
+            
+            div_relatorio.innerHTML += `Código: ${produtos[index].codigo} <br>
+                                        Nome: ${produtos[index].nome} <br>
+                                        Quantidade: ${produtos[index].estoque} <br><br>
+                                        `
+        }
+
+    }
+</script>

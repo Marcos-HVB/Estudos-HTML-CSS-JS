@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Nome piloto:
+    <input type="text" id="in_nomePiloto"> <br>
+
+    <button onclick="registrar()">Registrar</button>
+    <button onclick="realizarCorrida()">Realizar Corrida</button>
+
+    <br><br>
+
+    <div id="div_voltas"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var qtdParticipantes = 0
+
+    var pilotos = []
+
+    function registrar(){
+        
+        var nomePiloto = in_nomePiloto.value
+
+        if(qtdParticipantes <= 12){
+            var infoPiloto = {
+                nome: nomePiloto,
+                qtdGasolina: 75,
+                tempo: 0,
+                paneGasolina: false
+            }
+            pilotos.push(infoPiloto)
+        }else{
+            alert('Número máximo já atingido')
+        }
+        qtdParticipantes++
+
+    }
+
+    function realizarCorrida(){
+        var infosPiloto = []
+        var pane
+        div_voltas.innerHTML = ''
+        if(qtdParticipantes >= 5 && qtdParticipantes <= 12){
+
+            for (let index = 0; index < pilotos.length; index++) {
+
+                for(let voltas = 0; voltas < 15; voltas++){
+
+                    var velocidadeSorteada = parseInt(210+ Math.random() * (290 - 210))
+                    
+                    var qtdGasolinaRetirada = (velocidadeSorteada/250) * 5
+                    
+                    pilotos[index].qtdGasolina -= qtdGasolinaRetirada
+                    if(pilotos[index].qtdGasolina <= 0){
+                        pilotos[index].paneGasolina = true
+                    }else{
+                        pilotos[index].tempo += (20/velocidadeSorteada) * 60
+
+                        pane = ''
+                    }
+
+
+                    if(pilotos[index].paneGasolina){
+                        pane = '- pane seca'
+                    }
+                        
+                    div_voltas.innerHTML += `Volta ${voltas+1} - Piloto: ${pilotos[index].nome} - Velocidade: ${velocidadeSorteada} - Combustível: ${qtdGasolinaRetirada.toFixed(2)} - Tempo: ${pilotos[index].tempo.toFixed(2)} ${pane}<br>`
+                
+                }
+                
+                div_voltas.innerHTML += "<br> <hr>"
+                
+            }
+
+
+            
+
+            for (let index = 0; index < pilotos.length; index++) {
+                
+                if(!pilotos[index].paneGasolina){
+                    var primeiroLugar = pilotos[0]
+                    var segundoLugar = pilotos[0]
+                    var terceiroLugar = pilotos[0]
+                    for (let index2 = 0; index2 < pilotos.length; index2++) {
+                        
+                        if(primeiroLugar.tempo >= pilotos[index2].tempo)
+                            primeiroLugar = pilotos[index2]
+                        else if(segundoLugar.tempo >= pilotos[index2].tempo)
+                            segundoLugar = pilotos[index2]
+                        else if(terceiroLugar.tempo >= pilotos[index2].tempo )
+                            terceiroLugar = pilotos[index2]
+                    }
+
+                    break
+                }
+            }
+            
+            
+            div_voltas.innerHTML += `<br><br>
+                                1 - Carro: ${primeiroLugar.nome} - Tempo Total: ${primeiroLugar.tempo.toFixed(2)}<br>
+                                2 - Carro: ${segundoLugar.nome} - Tempo Total: ${segundoLugar.tempo.toFixed(2)}<br>
+                                3 - Carro: ${terceiroLugar.nome} - Tempo Total: ${terceiroLugar.tempo.toFixed(2)} <br>
+                                `
+
+                                console.log(pilotos)
+        }else{
+            alert('Quantidade de participantes necessários não está completa')
+        }
+
+    }
+
+
+</script>
